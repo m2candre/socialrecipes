@@ -1,0 +1,23 @@
+default: &default
+  adapter:  postgresql
+  #encoding: unicode
+  encoding: utf8
+  host:     localhost
+  port:     5432
+  username: marcos
+  password: marcos
+  pool:     <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: socialrecipes_development
+
+test:
+  <<: *default
+  database: socialrecipes_test
+
+production:
+  <<: *default
+  username: socialrecipes
+  database: socialrecipes_production
+  password: <%= ENV['SOCIALRECIPES_DATABASE_PASSWORD'] %>
